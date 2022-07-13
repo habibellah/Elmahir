@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">الماهر</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="definition">أفضل تطبيق لتسيير المدرسة القرانية</string>
+    <string name="logo">الماهر</string>
+    <string name="teacher">الشيخ</string>
+    <string name="students">الطلاب</string>
+    <string name="teacher_name">أضف شيخ</string>
+    <string name="add_student">أضف طالب</string>
+</resources>

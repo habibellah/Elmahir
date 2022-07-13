@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_app"
+    app:startDestination="@id/logoPage">
+
+    <fragment
+        android:id="@+id/logoPage"
+        android:name="habibellah.ayata.elmahirofquran.LogoPage"
+        android:label="fragment_logo_page"
+        tools:layout="@layout/fragment_logo_page" >
+        <action
+            android:id="@+id/action_logoPage_to_navToStudentOrTeacherPage"
+            app:destination="@id/navToStudentOrTeacherPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/navToStudentOrTeacherPage"
+        android:name="habibellah.ayata.elmahirofquran.NavToStudentOrTeacherPage"
+        android:label="fragment_nav_to_student_or_teacher_page"
+        tools:layout="@layout/fragment_nav_to_student_or_teacher_page" >
+        <action
+            android:id="@+id/action_navToStudentOrTeacherPage_to_addStudentPage"
+            app:destination="@id/addStudentPage" />
+        <action
+            android:id="@+id/action_navToStudentOrTeacherPage_to_profileStudentPage"
+            app:destination="@id/profileStudentPage" />
+        <action
+            android:id="@+id/action_navToStudentOrTeacherPage_to_addTeacher"
+            app:destination="@id/addTeacher" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileStudentPage"
+        android:name="habibellah.ayata.elmahirofquran.ProfileStudentPage"
+        android:label="fragment_profile_student_page"
+        tools:layout="@layout/fragment_profile_student_page" />
+    <fragment
+        android:id="@+id/addStudentPage"
+        android:name="habibellah.ayata.elmahirofquran.AddStudentPage"
+        android:label="fragment_add_student_page"
+        tools:layout="@layout/fragment_add_student_page" />
+    <dialog
+        android:id="@+id/addTeacher"
+        android:name="habibellah.ayata.elmahirofquran.AddTeacher"
+        android:label="fragment_add_teacher"
+        tools:layout="@layout/fragment_add_teacher" />
+</navigation>

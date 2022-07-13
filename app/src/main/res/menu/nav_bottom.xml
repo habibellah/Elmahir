@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/teacher"
+   android:icon="@drawable/ic_command_svgrepo_com"
+    android:title="@string/teacher"/>
+    <item android:id="@+id/student"
+        android:icon="@drawable/ic_student_svgrepo_com"
+        android:title="@string/students"/>
+</menu>
