@@ -1,17 +1,18 @@
 package habibellah.ayata.elmahirofquran
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import habibellah.ayata.elmahirofquran.databinding.FragmentLogoPageBinding
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers.io
-import java.util.concurrent.TimeUnit
 
+/*
+@definition this page has the splash screen where show the logo and get data from data bases
+ */
 class LogoPage : Fragment() {
 
     private lateinit var binding: FragmentLogoPageBinding
@@ -24,22 +25,19 @@ class LogoPage : Fragment() {
         return binding.root
     }
 
+    //this function is make a timer for three seconds
     private fun timerOfSeconds() {
-        val observable = Observable.timer(3, TimeUnit.SECONDS)
-        observable.subscribeOn(io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-            { navToStudentTeacherPage() }, { throwException() }
-        )
+        Handler(Looper.getMainLooper()).postDelayed({
+            navToStudentTeacherPage()
+        }, 3000)
     }
 
+//this method navigate to Student_and_TeacherPage
     private fun navToStudentTeacherPage() {
         view?.let {
             Navigation.findNavController(it)
                 .navigate(R.id.action_logoPage_to_navToStudentOrTeacherPage)
         }
-    }
-
-    private fun throwException() {
-        throw Exception()
     }
 
 }
