@@ -1,6 +1,6 @@
 package habibellah.ayata.elmahir.dataBase
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,7 +17,6 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class TeacherDaoTest {
-
    @get:Rule
    var instantTaskExecutorRule = InstantTaskExecutorRule()
    private lateinit var elmahirDataBase : ElmahirDataBase
@@ -26,7 +25,7 @@ class TeacherDaoTest {
    @Before
    fun initDb() {
       elmahirDataBase = Room.inMemoryDatabaseBuilder(
-         ApplicationProvider.getApplicationContext(),
+         ApplicationProvider.getApplicationContext() ,
          ElmahirDataBase::class.java
       ).build()
       teacherDao = elmahirDataBase.teacherDao()
@@ -37,12 +36,18 @@ class TeacherDaoTest {
       elmahirDataBase.close()
    }
 
- @Test
+   @Test
    fun testAddTeacher() = runBlocking {
       teacherDao.addTeacher(aTeacher().build())
-
       val result = teacherDao.getTeacherList()
+      Assert.assertEquals(1 , result.size)
+   }
 
-      Assert.assertEquals(1,result.size)
+   @Test
+   fun testGetTeachers() = runBlocking {
+      teacherDao.addTeacher(aTeacher().withId(1).build())
+      teacherDao.addTeacher(aTeacher().withId(2).build())
+      val result = teacherDao.getTeacherList()
+      Assert.assertEquals(2,result.size)
    }
 }
