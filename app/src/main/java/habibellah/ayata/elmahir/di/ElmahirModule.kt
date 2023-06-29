@@ -7,7 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import habibellah.ayata.elmahir.data.repository.TeacherRepository
+import habibellah.ayata.elmahir.data.repository.TeacherRepositoryImpl
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
+import habibellah.ayata.elmahir.data.roomDb.TeacherDao
 import javax.inject.Singleton
 
 @Module
@@ -32,4 +35,9 @@ object ElmahirModule {
    @Singleton
    @Provides
    fun provideTeacherDao(db: ElmahirDataBase) = db.teacherDao()
+
+   @Provides
+   fun provideTeacherRepository(teacherDao : TeacherDao):TeacherRepository{
+      return TeacherRepositoryImpl(teacherDao)
+   }
 }

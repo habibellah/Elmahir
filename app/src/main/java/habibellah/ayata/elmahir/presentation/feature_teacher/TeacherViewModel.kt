@@ -16,6 +16,10 @@ class TeacherViewModel @Inject constructor(private val teacherRepository : Teach
    private val _teachers : MutableLiveData<List<Teacher>> = MutableLiveData<List<Teacher>>()
    val teachers : LiveData<List<Teacher>> = _teachers
 
+   init {
+      getTeachers()
+   }
+
    fun addTeacher(teacher : Teacher) {
       viewModelScope.launch {
          teacherRepository.addTeacher(teacher)

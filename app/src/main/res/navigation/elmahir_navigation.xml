@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/elmahir_navigation"
+    app:startDestination="@id/teacherFragment">
+
+    <fragment
+        android:id="@+id/teacherFragment"
+        android:name="habibellah.ayata.elmahir.presentation.feature_teacher.TeacherFragment"
+        android:label="TeacherFragment" >
+        <action
+            android:id="@+id/action_teacherFragment_to_addTeacherDialogFragment"
+            app:destination="@id/addTeacherDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addTeacherDialogFragment"
+        android:name="habibellah.ayata.elmahir.presentation.feature_teacher.AddTeacherDialogFragment"
+        android:label="AddTeacherDialogFragment" />
+</navigation>
