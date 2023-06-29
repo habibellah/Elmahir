@@ -3,6 +3,7 @@ package habibellah.ayata.elmahir.presentation.feature_teacher.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import habibellah.ayata.elmahir.R
@@ -13,7 +14,9 @@ class TeacherAdapter : RecyclerView.Adapter<TeacherAdapter.TeacherHolder>() {
    private var teachers : List<Teacher> = emptyList()
 
    fun setData(newTeachers : List<Teacher>) {
+      val diffResult = DiffUtil.calculateDiff(TeacherDiffUtilI(teachers,newTeachers))
       teachers = newTeachers
+      diffResult.dispatchUpdatesTo(this)
    }
 
    override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : TeacherHolder {

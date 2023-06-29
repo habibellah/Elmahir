@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import habibellah.ayata.elmahir.R
+import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 import habibellah.ayata.elmahir.databinding.FragmentAddTeacherDialogBinding
 
+@AndroidEntryPoint
 class AddTeacherDialogFragment : DialogFragment() {
 
    private val teacherViewModel : TeacherViewModel by viewModels()
@@ -30,14 +33,20 @@ class AddTeacherDialogFragment : DialogFragment() {
 
    private fun addTeacherButtonCallBack() {
       binding.add.setOnClickListener {
-         checkInputs()
+        if(isValidInputs())
+        {
+           teacherViewModel.addTeacher(Teacher(0,binding.addTeacher.editText!!.text.toString()))
+           dialog!!.cancel()
+        }
       }
    }
 
-   private fun checkInputs() {
+   private fun isValidInputs() : Boolean{
       if(binding.addTeacher.editText?.text?.isEmpty() == true){
          binding.addTeacher.error = "قم بإدخال إسم الشيخ"
+         return false
       }
+      return true
    }
 
    override fun onResume() {

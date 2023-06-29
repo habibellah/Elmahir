@@ -1,5 +1,7 @@
 package habibellah.ayata.elmahir.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import habibellah.ayata.elmahir.data.repository.TeacherRepository
 import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 
@@ -9,7 +11,7 @@ class FakeTeacherRepository : TeacherRepository{
      teachers.add(teacher)
    }
 
-   override suspend fun getTeacherList() : List<Teacher> {
-     return teachers
+   override fun getTeacherList() : LiveData<List<Teacher>> {
+      return MutableLiveData(teachers)
    }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import habibellah.ayata.elmahir.R
 import habibellah.ayata.elmahir.databinding.FragmentTeacherBinding
@@ -29,12 +30,24 @@ class TeacherFragment : Fragment() {
 
    override fun onViewCreated(view : View , savedInstanceState : Bundle?) {
       super.onViewCreated(view , savedInstanceState)
+      addTeacherFABCallBack()
      setupAdapter()
+   }
+
+   private fun addTeacherFABCallBack() {
+      binding.addTeacherFab.setOnClickListener {
+         navigateToAddTeacherDialog()
+      }
+   }
+
+   private fun navigateToAddTeacherDialog() {
+      Navigation.findNavController(requireActivity(),R.id.fragmentContainerView)
+         .navigate(R.id.action_teacherFragment_to_addTeacherDialogFragment)
    }
 
    private fun setupAdapter() {
       teacherAdapter = TeacherAdapter()
-      teacherViewModel.teachers.observe(viewLifecycleOwner){
+      teacherViewModel.getTeachers().observe(viewLifecycleOwner){
          if(it.isNotEmpty()){
             teacherAdapter.setData(it)
          }

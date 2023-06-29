@@ -1,6 +1,7 @@
 package habibellah.ayata.elmahir.presentation.feature_teacher
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import habibellah.ayata.elmahir.data.FakeTeacherRepository
 import habibellah.ayata.elmahir.data.TeacherDataBuilder.Companion.aTeacher
 import habibellah.ayata.elmahir.data.repository.TeacherRepository
@@ -35,20 +36,26 @@ class TeacherViewModelTest{
 
    @Test
    fun testAddTeacher(){
+      val observer : Observer<List<Teacher>> = Observer {
+         assertEquals(1 , it.size)
+      }
       teacherViewModel.addTeacher(aTeacher().withId(1).build())
-      teacherViewModel.getTeachers()
       dispatcher.scheduler.advanceUntilIdle()
-      assertEquals(1, teacherViewModel.teachers.value?.size ?: 0)
+      teacherViewModel.getTeachers().observeForever(observer)
+     teacherViewModel.getTeachers().removeObserver(observer)
    }
 
    @Test
    fun testGetTeachers(){
+      val observer : Observer<List<Teacher>> = Observer {
+         assertEquals(4 , it.size)
+      }
       teacherViewModel.addTeacher(aTeacher().withId(1).build())
       teacherViewModel.addTeacher(aTeacher().withId(2).build())
       teacherViewModel.addTeacher(aTeacher().withId(3).build())
       teacherViewModel.addTeacher(aTeacher().withId(4).build())
-      teacherViewModel.getTeachers()
       dispatcher.scheduler.advanceUntilIdle()
-      assertEquals(4,teacherViewModel.teachers.value?.size ?: 0)
+      teacherViewModel.getTeachers().observeForever(observer)
+      teacherViewModel.getTeachers().removeObserver(observer)
    }
 }

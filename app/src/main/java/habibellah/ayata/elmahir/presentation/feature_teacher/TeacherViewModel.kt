@@ -13,8 +13,6 @@ import javax.inject.Inject
 @HiltViewModel
 class TeacherViewModel @Inject constructor(private val teacherRepository : TeacherRepository) :
    ViewModel() {
-   private val _teachers : MutableLiveData<List<Teacher>> = MutableLiveData<List<Teacher>>()
-   val teachers : LiveData<List<Teacher>> = _teachers
 
    init {
       getTeachers()
@@ -26,9 +24,5 @@ class TeacherViewModel @Inject constructor(private val teacherRepository : Teach
       }
    }
 
-   fun getTeachers() {
-      viewModelScope.launch {
-         _teachers.postValue(teacherRepository.getTeacherList())
-      }
-   }
+   fun getTeachers() : LiveData<List<Teacher>> = teacherRepository.getTeacherList()
 }

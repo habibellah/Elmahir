@@ -1,12 +1,15 @@
 package habibellah.ayata.elmahir.dataBase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import habibellah.ayata.elmahir.data.TeacherDataBuilder.Companion.aTeacher
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
 import habibellah.ayata.elmahir.data.roomDb.TeacherDao
+import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
@@ -38,16 +41,22 @@ class TeacherDaoTest {
 
    @Test
    fun testAddTeacher() = runBlocking {
+      val observer : Observer<List<Teacher>> = Observer {
+         Assert.assertEquals(1 , it.size)
+      }
       teacherDao.addTeacher(aTeacher().build())
-      val result = teacherDao.getTeacherList()
-      Assert.assertEquals(1 , result.size)
+      teacherDao.getTeacherList().observeForever(observer)
+      teacherDao.getTeacherList().removeObserver(observer)
    }
 
    @Test
    fun testGetTeachers() = runBlocking {
+      val observer : Observer<List<Teacher>> = Observer {
+         Assert.assertEquals(2 , it.size)
+      }
       teacherDao.addTeacher(aTeacher().withId(1).build())
       teacherDao.addTeacher(aTeacher().withId(2).build())
-      val result = teacherDao.getTeacherList()
-      Assert.assertEquals(2,result.size)
+      teacherDao.getTeacherList().observeForever(observer)
+      teacherDao.getTeacherList().removeObserver(observer)
    }
 }
