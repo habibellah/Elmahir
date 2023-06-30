@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "habibellah.ayata.elmahir.HiltTestRunner"
     }
     buildFeatures{
         dataBinding true
@@ -69,5 +69,9 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:2.2.0"
     testImplementation "androidx.arch.core:core-testing:2.2.0"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.38.1'
+    debugImplementation "androidx.fragment:fragment-testing:1.6.0"
 
 }
