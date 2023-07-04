@@ -35,7 +35,6 @@ class TeacherDaoTest {
    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
    @Inject
-   @Named("test_db")
     lateinit var elmahirDataBase : ElmahirDataBase
    private lateinit var teacherDao : TeacherDao
 
