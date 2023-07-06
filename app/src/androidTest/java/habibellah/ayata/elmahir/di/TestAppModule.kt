@@ -20,19 +20,19 @@ import javax.inject.Singleton
 object TestAppModule {
 
 
-   @Singleton
    @Provides
    fun provideDatabase(@ApplicationContext context: Context) : ElmahirDataBase {
       return Room.inMemoryDatabaseBuilder(context, ElmahirDataBase::class.java).allowMainThreadQueries().build()
    }
 
-   @Singleton
    @Provides
    fun provideStudentDao(db: ElmahirDataBase) = db.studentDao()
 
-   @Singleton
    @Provides
    fun provideTeacherDao(db: ElmahirDataBase) = db.teacherDao()
+
+   @Provides
+   fun provideGroupsDao(db: ElmahirDataBase) = db.groupsDao()
 
    @Provides
    fun provideTeacherRepository(teacherDao : TeacherDao): TeacherRepository {

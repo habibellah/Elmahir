@@ -4,14 +4,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import habibellah.ayata.elmahir.data.FakeTeacherRepository
 import habibellah.ayata.elmahir.data.TeacherDataBuilder.Companion.aTeacher
-import habibellah.ayata.elmahir.data.repository.TeacherRepository
-import habibellah.ayata.elmahir.data.repository.TeacherRepositoryImpl
 import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.setMain
-import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -22,6 +19,7 @@ import org.junit.runners.JUnit4
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(JUnit4::class)
 class TeacherViewModelTest{
+
    @get:Rule
    var instantTaskExecutorRule = InstantTaskExecutorRule()
    private val dispatcher = StandardTestDispatcher()
