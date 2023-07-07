@@ -8,6 +8,7 @@ import habibellah.ayata.elmahir.data.GroupDataBuilder.Companion.aGroup
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
 import habibellah.ayata.elmahir.data.roomDb.GroupsDao
 import habibellah.ayata.elmahir.data.roomDb.entity.Group
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -40,7 +41,7 @@ class GroupsDaoTest {
    }
 
    @Test
-   fun testAddNewGroup(){
+   fun testAddNewGroup() = runBlocking{
       val observer : Observer<List<Group>> = Observer {
          Assert.assertEquals(1, it.size)
       }
@@ -50,7 +51,7 @@ class GroupsDaoTest {
    }
 
    @Test
-   fun testGetGroups(){
+   fun testGetGroups() = runBlocking{
       val observer : Observer<List<Group>> = Observer {
          Assert.assertEquals(2, it.size)
       }

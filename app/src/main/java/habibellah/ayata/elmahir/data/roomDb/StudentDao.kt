@@ -9,11 +9,11 @@ import habibellah.ayata.elmahir.data.roomDb.entity.Student
 interface StudentDao {
 
    @Insert
-   fun addStudent(student : Student)
+  suspend fun addStudent(student : Student)
 
-   @Query("SELECT * FROM student")
-   fun getStudents() : List<Student>
+   @Query("SELECT * FROM student WHERE groupName = :groupName")
+  suspend fun getStudentsBy(groupName : String) : List<Student>
 
    @Query("SELECT * FROM student WHERE id = :id")
-   fun getStudentBy(id : Int) : Student
+  suspend fun getStudentBy(id : Int) : Student
 }

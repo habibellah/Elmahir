@@ -15,6 +15,7 @@ class StudentDataBuilder {
    var currentSora = "some sora"
    var age = 0
    var teacherName = "some name"
+   var groupName = "some group"
 
    fun withId(id : Int) : StudentDataBuilder{
       this.id = id
@@ -56,6 +57,10 @@ class StudentDataBuilder {
       return this
    }
 
+   fun withGroupName(groupName : String) : StudentDataBuilder{
+      this.groupName = groupName
+      return this
+   }
    fun build(): Student {
       return Student(
          id = id ,
@@ -65,7 +70,8 @@ class StudentDataBuilder {
          age = age,
          teacherName = teacherName,
          absents = absents ,
-         currentSora = currentSora
+         currentSora = currentSora,
+         groupName = groupName
       )
    }
 }

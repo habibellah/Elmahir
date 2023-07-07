@@ -6,6 +6,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import habibellah.ayata.elmahir.data.StudentDataBuilder.Companion.aStudent
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
 import habibellah.ayata.elmahir.data.roomDb.StudentDao
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -38,24 +39,24 @@ class StudentDaoTest {
    }
 
    @Test
-   fun testAddStudent(){
-      studentDao.addStudent(aStudent().withId(1).build())
-      studentDao.addStudent(aStudent().withId(2).build())
-      val students = studentDao.getStudents()
+   fun testAddStudent() = runBlocking{
+      studentDao.addStudent(aStudent().withId(1).withGroupName("Old people").build())
+      studentDao.addStudent(aStudent().withId(2).withGroupName("Old people").build())
+      val students = studentDao.getStudentsBy("Old people")
       Assert.assertEquals(2,students.size)
    }
 
    @Test
-   fun testGetStudents(){
-      studentDao.addStudent(aStudent().withId(1).build())
-      studentDao.addStudent(aStudent().withId(2).build())
-      studentDao.addStudent(aStudent().withId(3).build())
-      val students = studentDao.getStudents()
-      Assert.assertEquals(3,students.size)
+   fun testGetStudentsByGroupId() = runBlocking{
+      studentDao.addStudent(aStudent().withId(1).withGroupName("Old people").build())
+      studentDao.addStudent(aStudent().withId(2).withGroupName("Old people").build())
+      studentDao.addStudent(aStudent().withId(3).withGroupName("Young people").build())
+      val students = studentDao.getStudentsBy("Old people")
+      Assert.assertEquals(2,students.size)
    }
 
    @Test
-   fun testGetStudentById(){
+   fun testGetStudentById() = runBlocking{
       studentDao.addStudent(aStudent().withId(1).withStudentName("habibellah").build())
       studentDao.addStudent(aStudent().withId(2).withStudentName("younes").build())
       studentDao.addStudent(aStudent().withId(3).withStudentName("faidi").build())

@@ -13,5 +13,6 @@ data class Student(
    val absents : Int ,
    val age : Int,
    val teacherName : String,
-   val currentSora : String
+   val currentSora : String,
+   val groupName : String
 )

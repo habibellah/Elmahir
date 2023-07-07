@@ -10,7 +10,7 @@ import habibellah.ayata.elmahir.data.roomDb.entity.Group
 interface GroupsDao {
 
    @Insert
-   fun addGroup(group : Group)
+  suspend fun addGroup(group : Group)
 
    @Query("SELECT * FROM `group`")
    fun getGroups() : LiveData<List<Group>>

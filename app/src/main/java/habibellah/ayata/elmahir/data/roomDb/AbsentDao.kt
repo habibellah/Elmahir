@@ -9,7 +9,7 @@ import habibellah.ayata.elmahir.data.roomDb.entity.Absent
 @Dao
 interface AbsentDao {
    @Insert
-   fun addAbsent(absent : Absent)
+  suspend fun addAbsent(absent : Absent)
 
    @Query("SELECT * FROM absent WHERE studentId = :studentId")
    fun getAbsentsBy(studentId : Int) : LiveData<List<Absent>>

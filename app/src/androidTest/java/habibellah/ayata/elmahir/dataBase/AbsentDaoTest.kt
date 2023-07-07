@@ -8,6 +8,7 @@ import habibellah.ayata.elmahir.data.AbsentDataBuilder.Companion.anAbsent
 import habibellah.ayata.elmahir.data.roomDb.AbsentDao
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
 import habibellah.ayata.elmahir.data.roomDb.entity.Absent
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -39,7 +40,7 @@ class AbsentDaoTest {
    }
 
    @Test
-   fun testAddAbsentByStudentId() {
+   fun testAddAbsentByStudentId() = runBlocking {
       val observer : Observer<List<Absent>> = Observer {
          Assert.assertEquals(2 , it.size)
       }
@@ -50,7 +51,7 @@ class AbsentDaoTest {
    }
 
    @Test
-   fun testGetAbsentByStudentId() {
+   fun testGetAbsentByStudentId() = runBlocking {
       val observer : Observer<List<Absent>> = Observer {
          Assert.assertEquals(3 , it.size)
       }
