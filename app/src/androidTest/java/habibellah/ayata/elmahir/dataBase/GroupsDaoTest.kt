@@ -7,7 +7,6 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import habibellah.ayata.elmahir.data.GroupDataBuilder.Companion.aGroup
 import habibellah.ayata.elmahir.data.roomDb.ElmahirDataBase
 import habibellah.ayata.elmahir.data.roomDb.GroupsDao
-import habibellah.ayata.elmahir.data.roomDb.TeacherDao
 import habibellah.ayata.elmahir.data.roomDb.entity.Group
 import org.junit.After
 import org.junit.Assert
@@ -17,7 +16,7 @@ import org.junit.Test
 import javax.inject.Inject
 
 @HiltAndroidTest
-class StudentGroupsDaoTest {
+class GroupsDaoTest {
 
    @get:Rule
    val hiltRule = HiltAndroidRule(this)

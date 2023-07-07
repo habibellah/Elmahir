@@ -45,13 +45,17 @@ object ElmahirModule {
 
    @Singleton
    @Provides
-   fun provideTeacherRepository(teacherDao : TeacherDao):TeacherRepository{
-      return TeacherRepositoryImpl(teacherDao)
-   }
+   fun provideAbsentDao(db: ElmahirDataBase) = db.absentDao()
 
    @Singleton
    @Provides
    fun provideGroupRepository(groupsDao : GroupsDao) : GroupRepository{
       return GroupRepositoryImpl(groupsDao)
+   }
+
+   @Singleton
+   @Provides
+   fun provideTeacherRepository(teacherDao : TeacherDao):TeacherRepository{
+      return TeacherRepositoryImpl(teacherDao)
    }
 }
