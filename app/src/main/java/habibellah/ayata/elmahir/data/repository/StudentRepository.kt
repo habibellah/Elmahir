@@ -13,4 +13,6 @@ interface StudentRepository {
    suspend fun addAbsent(absent : Absent)
 
    fun getAbsentsBy(studentId : Int) : LiveData<List<Absent>>
+
+   suspend fun getStudentBy(id : Int) : Student
 }

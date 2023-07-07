@@ -16,4 +16,6 @@ class StudentRepositoryImpl (
    override suspend fun addAbsent(absent : Absent) = absentDao.addAbsent(absent)
 
    override fun getAbsentsBy(studentId : Int) = absentDao.getAbsentsBy(studentId)
+
+   override suspend fun getStudentBy(id : Int) = studentDao.getStudentBy(id)
 }

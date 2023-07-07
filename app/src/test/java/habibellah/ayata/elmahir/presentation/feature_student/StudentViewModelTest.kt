@@ -30,23 +30,21 @@ class StudentViewModelTest {
    private val dispatcher = StandardTestDispatcher()
 
    private lateinit var studentViewModel : StudentViewModel
-   private lateinit var studentRepository : StudentRepository
 
    @Before
    fun setUp() {
-      studentRepository = FakeStudentRepository()
-      studentViewModel = StudentViewModel(studentRepository)
+      studentViewModel = StudentViewModel(FakeStudentRepository())
       Dispatchers.setMain(dispatcher)
    }
 
    @Test
-   fun testGetStudentsByGroupName() = runBlocking{
+   fun testGetStudentsByGroupName() {
       val observer : Observer<List<Student>> = Observer {
          Assert.assertEquals(3,it.size)
       }
-      studentRepository.addStudent(aStudent().withId(1).withGroupName("Old people").build())
-      studentRepository.addStudent(aStudent().withId(2).withGroupName("Old people").build())
-      studentRepository.addStudent(aStudent().withId(3).withGroupName("Old people").build())
+      studentViewModel.addStudent(aStudent().withId(1).withGroupName("Old people").build())
+      studentViewModel.addStudent(aStudent().withId(2).withGroupName("Old people").build())
+      studentViewModel.addStudent(aStudent().withId(3).withGroupName("Old people").build())
       studentViewModel.getStudents("Old people")
       dispatcher.scheduler.advanceUntilIdle()
       studentViewModel.students.observeForever(observer)

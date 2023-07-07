@@ -25,4 +25,8 @@ class FakeStudentRepository : StudentRepository {
    override fun getAbsentsBy(studentId : Int) : LiveData<List<Absent>> {
       return MutableLiveData(absents.filter { it.studentId == studentId })
    }
+
+   override suspend fun getStudentBy(id : Int) : Student {
+      return students.first { it.id == id }
+   }
 }

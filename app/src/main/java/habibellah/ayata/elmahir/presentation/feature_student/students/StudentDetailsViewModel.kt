@@ -6,27 +6,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import habibellah.ayata.elmahir.data.repository.StudentRepository
+import habibellah.ayata.elmahir.data.roomDb.entity.Absent
 import habibellah.ayata.elmahir.data.roomDb.entity.Student
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StudentViewModel @Inject constructor(
+class StudentDetailsViewModel @Inject constructor(
    private val studentRepository : StudentRepository
 ): ViewModel() {
 
-   fun getStudents(groupName : String) {
-    viewModelScope.launch {
-       _students.postValue(studentRepository.getStudentBy(groupName))
-    }
-   }
+   private val _student : MutableLiveData<Student> = MutableLiveData()
+   val student : LiveData<Student> = _student
 
-   fun addStudent(student : Student) {
+   fun addAbsent(absent : Absent) {
       viewModelScope.launch {
-         studentRepository.addStudent(student)
+         studentRepository.addAbsent(absent)
       }
    }
 
-   private val _students:MutableLiveData<List<Student>> = MutableLiveData()
-   val students : LiveData<List<Student>> = _students
+   fun getAbsentsBy(studentId : Int) = studentRepository.getAbsentsBy(studentId)
+
+   fun getStudentBy(id : Int) {
+      viewModelScope.launch {
+         _student.postValue(studentRepository.getStudentBy(id))
+      }
+   }
+
 }
