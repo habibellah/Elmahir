@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/elmahir_navigation"
-    app:startDestination="@id/teacherFragment">
+    app:startDestination="@id/groupFragment">
 
     <fragment
         android:id="@+id/teacherFragment"
@@ -16,4 +16,8 @@
         android:id="@+id/addTeacherDialogFragment"
         android:name="habibellah.ayata.elmahir.presentation.feature_teacher.AddTeacherDialogFragment"
         android:label="AddTeacherDialogFragment" />
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="habibellah.ayata.elmahir.presentation.feature_student.groups.GroupFragment"
+        android:label="GroupFragment" />
 </navigation>

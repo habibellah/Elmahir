@@ -47,9 +47,9 @@ class TeacherFragment : Fragment() {
 
    private fun setupAdapter() {
       teacherAdapter = TeacherAdapter()
-      teacherViewModel.getTeachers().observe(viewLifecycleOwner){
-         if(it.isNotEmpty()){
-            teacherAdapter.setData(it)
+      teacherViewModel.getTeachers().observe(viewLifecycleOwner){teachers ->
+         if(teachers.isNotEmpty()){
+            teacherAdapter.setData(teachers)
          }
       }
       binding.teachersRecycler.adapter = teacherAdapter
