@@ -21,9 +21,6 @@ class StudentViewModel @Inject constructor(
    private val _student:MutableLiveData<Student> = MutableLiveData()
    val student : LiveData<Student> = _student
 
-   init {
-      getStudents("old")
-   }
    fun getStudents(groupName : String) {
     viewModelScope.launch {
        _students.postValue(studentRepository.getStudentBy(groupName))

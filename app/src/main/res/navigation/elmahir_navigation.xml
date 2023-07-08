@@ -2,24 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/elmahir_navigation"
-    app:startDestination="@id/studentsFragment">
+    app:startDestination="@id/logoFragment">
 
-    <fragment
-        android:id="@+id/teacherFragment"
-        android:name="habibellah.ayata.elmahir.presentation.feature_teacher.TeacherFragment"
-        android:label="TeacherFragment" >
-        <action
-            android:id="@+id/action_teacherFragment_to_addTeacherDialogFragment"
-            app:destination="@id/addTeacherDialogFragment" />
-    </fragment>
     <dialog
         android:id="@+id/addTeacherDialogFragment"
         android:name="habibellah.ayata.elmahir.presentation.feature_teacher.AddTeacherDialogFragment"
         android:label="AddTeacherDialogFragment" />
-    <fragment
-        android:id="@+id/groupFragment"
-        android:name="habibellah.ayata.elmahir.presentation.feature_student.groups.GroupFragment"
-        android:label="GroupFragment" />
     <fragment
         android:id="@+id/studentsFragment"
         android:name="habibellah.ayata.elmahir.presentation.feature_student.students.StudentsFragment"
@@ -27,9 +15,42 @@
         <action
             android:id="@+id/action_studentsFragment_to_addStudentFragment"
             app:destination="@id/addStudentFragment" />
+        <action
+            android:id="@+id/action_studentsFragment_to_studentDetailsFragment"
+            app:destination="@id/studentDetailsFragment" />
+        <argument
+            android:name="groupName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addStudentFragment"
         android:name="habibellah.ayata.elmahir.presentation.feature_student.students.AddStudentFragment"
         android:label="AddStudentFragment" />
+    <fragment
+        android:id="@+id/studentDetailsFragment"
+        android:name="habibellah.ayata.elmahir.presentation.feature_student.students.StudentDetailsFragment"
+        android:label="StudentDetailsFragment" >
+        <argument
+            android:name="studentId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigationBottomFragment"
+        android:name="habibellah.ayata.elmahir.presentation.NavigationBottomFragment"
+        android:label="NavigationBottomFragment" >
+        <action
+            android:id="@+id/action_navigationBottomFragment_to_studentsFragment"
+            app:destination="@id/studentsFragment" />
+        <action
+            android:id="@+id/action_navigationBottomFragment_to_addTeacherDialogFragment"
+            app:destination="@id/addTeacherDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logoFragment"
+        android:name="habibellah.ayata.elmahir.presentation.LogoFragment"
+        android:label="LogoFragment" >
+        <action
+            android:id="@+id/action_logoFragment_to_navigationBottomFragment"
+            app:destination="@id/navigationBottomFragment" />
+    </fragment>
 </navigation>

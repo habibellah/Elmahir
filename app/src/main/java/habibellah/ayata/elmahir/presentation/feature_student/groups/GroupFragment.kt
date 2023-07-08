@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import habibellah.ayata.elmahir.R
 import habibellah.ayata.elmahir.databinding.FragmentGroupBinding
+import habibellah.ayata.elmahir.presentation.NavigationBottomFragmentDirections
 import habibellah.ayata.elmahir.presentation.feature_student.groups.adapter.GroupAdapter
 import habibellah.ayata.elmahir.presentation.feature_student.groups.adapter.GroupListener
 
@@ -38,7 +39,7 @@ class GroupFragment : Fragment() {
    private fun setupGroupAdapter() {
       groupAdapter = GroupAdapter(object : GroupListener{
          override fun onGroupClick(groupName : String) {
-            navigateToStudentFragment()
+            navigateToStudentFragment(groupName)
          }
       })
       groupViewModel.getGroups().observe(viewLifecycleOwner){groups->
@@ -49,8 +50,10 @@ class GroupFragment : Fragment() {
       binding.recyclerGroup.adapter = groupAdapter
    }
 
-   private fun navigateToStudentFragment() {
-
+   private fun navigateToStudentFragment(groupName : String) {
+      val action = NavigationBottomFragmentDirections.actionNavigationBottomFragmentToStudentsFragment(groupName)
+     Navigation.findNavController(requireActivity(),R.id.fragmentContainerView)
+        .navigate(action)
    }
 
    private fun addGroupButtonCallBack() {

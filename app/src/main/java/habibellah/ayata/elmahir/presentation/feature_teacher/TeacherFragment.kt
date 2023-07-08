@@ -42,7 +42,7 @@ class TeacherFragment : Fragment() {
 
    private fun navigateToAddTeacherDialog() {
       Navigation.findNavController(requireActivity(),R.id.fragmentContainerView)
-         .navigate(R.id.action_teacherFragment_to_addTeacherDialogFragment)
+         .navigate(R.id.action_navigationBottomFragment_to_addTeacherDialogFragment)
    }
 
    private fun setupAdapter() {
