@@ -32,5 +32,4 @@ class StudentDetailsViewModel @Inject constructor(
          _student.postValue(studentRepository.getStudentBy(id))
       }
    }
-
 }

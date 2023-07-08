@@ -15,6 +15,15 @@ class StudentViewModel @Inject constructor(
    private val studentRepository : StudentRepository
 ): ViewModel() {
 
+   private val _students:MutableLiveData<List<Student>> = MutableLiveData()
+   val students : LiveData<List<Student>> = _students
+
+   private val _student:MutableLiveData<Student> = MutableLiveData()
+   val student : LiveData<Student> = _student
+
+   init {
+      getStudents("old")
+   }
    fun getStudents(groupName : String) {
     viewModelScope.launch {
        _students.postValue(studentRepository.getStudentBy(groupName))
@@ -26,7 +35,4 @@ class StudentViewModel @Inject constructor(
          studentRepository.addStudent(student)
       }
    }
-
-   private val _students:MutableLiveData<List<Student>> = MutableLiveData()
-   val students : LiveData<List<Student>> = _students
 }

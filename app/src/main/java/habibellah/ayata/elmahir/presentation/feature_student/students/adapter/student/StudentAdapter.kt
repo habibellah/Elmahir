@@ -1,4 +1,4 @@
-package habibellah.ayata.elmahir.presentation.feature_student.students.adapter
+package habibellah.ayata.elmahir.presentation.feature_student.students.adapter.student
 
 import android.view.LayoutInflater
 import android.view.View

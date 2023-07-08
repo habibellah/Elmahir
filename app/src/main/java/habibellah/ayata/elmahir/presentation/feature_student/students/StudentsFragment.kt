@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 import habibellah.ayata.elmahir.R
-import habibellah.ayata.elmahir.data.roomDb.entity.Student
 import habibellah.ayata.elmahir.databinding.FragmentStudentsBinding
-import habibellah.ayata.elmahir.presentation.feature_student.students.adapter.StudentAdapter
-import habibellah.ayata.elmahir.presentation.feature_student.students.adapter.StudentListener
+import habibellah.ayata.elmahir.presentation.feature_student.students.adapter.student.StudentAdapter
+import habibellah.ayata.elmahir.presentation.feature_student.students.adapter.student.StudentListener
 
+@AndroidEntryPoint
 class StudentsFragment : Fragment() {
+
+   private val studentViewModel : StudentViewModel by viewModels()
    private lateinit var studentAdapter : StudentAdapter
    private lateinit var binding : FragmentStudentsBinding
    override fun onCreateView(
@@ -42,28 +46,11 @@ class StudentsFragment : Fragment() {
 
          }
       })
-      studentAdapter.setData(
-         listOf(
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-            Student(
-               id = 4542 , studentName = "Ethan Russo" , educationYear = "veri" , healthStatus = "interdum" , absents = 6891 , age = 5258 , teacherName = "Tim Lyons" , currentSora = "eirmod" , groupName = "Bertha Petersen"
-            ),
-         )
-      )
+     studentViewModel.students.observe(viewLifecycleOwner){ students ->
+        if(students.isNotEmpty()){
+           studentAdapter.setData(students)
+        }
+     }
       binding.studentRecycler.adapter = studentAdapter
    }
 

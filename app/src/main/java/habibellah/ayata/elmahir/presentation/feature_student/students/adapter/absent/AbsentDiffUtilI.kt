@@ -1,11 +1,12 @@
-package habibellah.ayata.elmahir.presentation.feature_student.students.adapter
+package habibellah.ayata.elmahir.presentation.feature_student.students.adapter.absent
 
 import androidx.recyclerview.widget.DiffUtil
+import habibellah.ayata.elmahir.data.roomDb.entity.Absent
 import habibellah.ayata.elmahir.data.roomDb.entity.Group
 import habibellah.ayata.elmahir.data.roomDb.entity.Student
 import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 
-class StudentDiffUtilI(private val oldList: List<Student> , private val newList: List<Student>) : DiffUtil.Callback() {
+class AbsentDiffUtilI(private val oldList: List<Absent> , private val newList: List<Absent>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
       return  oldList.size
     }
