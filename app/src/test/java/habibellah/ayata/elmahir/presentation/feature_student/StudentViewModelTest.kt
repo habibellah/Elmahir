@@ -50,4 +50,19 @@ class StudentViewModelTest {
       studentViewModel.students.observeForever(observer)
       studentViewModel.students.removeObserver(observer)
    }
+
+   @Test
+   fun testDeleteStudentById() = runBlocking {
+      val observer : Observer<List<Student>> = Observer {
+         Assert.assertEquals(2,it.size)
+      }
+      studentViewModel.addStudent(aStudent().withId(1).withGroupName("Old people").build())
+      studentViewModel.addStudent(aStudent().withId(2).withGroupName("Old people").build())
+      studentViewModel.addStudent(aStudent().withId(3).withGroupName("Old people").build())
+      studentViewModel.deleteStudentBy(1)
+      studentViewModel.getStudents("Old people")
+      dispatcher.scheduler.advanceUntilIdle()
+      studentViewModel.students.observeForever(observer)
+      studentViewModel.students.removeObserver(observer)
+   }
 }

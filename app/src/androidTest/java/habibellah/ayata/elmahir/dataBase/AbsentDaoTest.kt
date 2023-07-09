@@ -61,4 +61,18 @@ class AbsentDaoTest {
       absentDao.getAbsentsBy(2).observeForever(observer)
       absentDao.getAbsentsBy(2).removeObserver(observer)
    }
+
+   @Test
+   fun testDeleteAbsentsByStudentId() = runBlocking {
+      val observer : Observer<List<Absent>> = Observer {
+         Assert.assertEquals(0 , it.size)
+      }
+      absentDao.addAbsent(anAbsent().withId(1).withStudentId(2).build())
+      absentDao.addAbsent(anAbsent().withId(2).withStudentId(2).build())
+      absentDao.addAbsent(anAbsent().withId(3).withStudentId(2).build())
+      absentDao.addAbsent(anAbsent().withId(4).withStudentId(4).build())
+      absentDao.deleteAbsentBy(2)
+      absentDao.getAbsentsBy(2).observeForever(observer)
+      absentDao.getAbsentsBy(2).removeObserver(observer)
+   }
 }

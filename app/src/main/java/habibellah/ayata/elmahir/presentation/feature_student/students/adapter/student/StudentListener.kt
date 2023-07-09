@@ -2,4 +2,5 @@ package habibellah.ayata.elmahir.presentation.feature_student.students.adapter.s
 
 interface StudentListener {
    fun onStudentItemClick(studentId : Int)
+   fun onStudentItemLongClick(studentId : Int)
 }

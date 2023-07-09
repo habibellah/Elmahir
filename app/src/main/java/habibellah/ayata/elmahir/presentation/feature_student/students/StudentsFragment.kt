@@ -51,11 +51,14 @@ class StudentsFragment : Fragment() {
          override fun onStudentItemClick(studentId : Int) {
            navigateToStudentDetailsFragment(studentId)
          }
+
+         override fun onStudentItemLongClick(studentId : Int) {
+            studentViewModel.deleteStudentBy(studentId)
+            studentViewModel.deleteAbsentsBy(studentId)
+         }
       })
-     studentViewModel.students.observe(viewLifecycleOwner){ students ->
-        if(students.isNotEmpty()){
+     studentViewModel.getStudents(args.groupName).observe(viewLifecycleOwner){ students ->
            studentAdapter.setData(students)
-        }
      }
       binding.studentRecycler.adapter = studentAdapter
    }

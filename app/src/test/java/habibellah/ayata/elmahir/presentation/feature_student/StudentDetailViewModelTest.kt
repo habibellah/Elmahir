@@ -66,4 +66,19 @@ class StudentDetailViewModelTest {
       studentDetailsViewModel.student.observeForever(observer)
       studentDetailsViewModel.student.removeObserver(observer)
    }
+
+   @Test
+   fun testUpdateStudentById() = runBlocking {
+      val observer : Observer<Student> = Observer {
+         Assert.assertEquals("faidi",it.studentName)
+      }
+      studentRepository.addStudent(aStudent().withId(1).withStudentName("habibellah").build())
+      studentRepository.addStudent(aStudent().withId(2).build())
+      studentRepository.addStudent(aStudent().withId(3).build())
+      studentDetailsViewModel.updateStudent(aStudent().withId(1).withStudentName("faidi").build())
+      studentDetailsViewModel.getStudentBy(1)
+      dispatcher.scheduler.advanceUntilIdle()
+      studentDetailsViewModel.student.observeForever(observer)
+      studentDetailsViewModel.student.removeObserver(observer)
+   }
 }

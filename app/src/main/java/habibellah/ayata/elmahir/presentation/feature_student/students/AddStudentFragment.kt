@@ -50,21 +50,6 @@ class AddStudentFragment : Fragment() {
                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                binding.spineerOfTeacher.adapter = adapter
             }
-            binding.spineerOfTeacher.onItemSelectedListener =
-               object : AdapterView.OnItemSelectedListener {
-                  override fun onItemSelected(
-                     parent : AdapterView<*>? ,
-                     view : View? ,
-                     position : Int ,
-                     id : Long
-                  ) {
-                     binding.textView8.text = teachers[position].name
-                  }
-
-                  override fun onNothingSelected(parent : AdapterView<*>?) {
-
-                  }
-               }
          }
       }
    }
@@ -78,22 +63,6 @@ class AddStudentFragment : Fragment() {
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
          binding.spinnerOfCurrentSore.adapter = adapter
       }
-      binding.spinnerOfCurrentSore.onItemSelectedListener =
-         object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-               parent : AdapterView<*>? ,
-               view : View? ,
-               position : Int ,
-               id : Long
-            ) {
-               val sowar = resources.getStringArray(R.array.sowar)
-               binding.textView7.text = sowar[position]
-            }
-
-            override fun onNothingSelected(parent : AdapterView<*>?) {
-
-            }
-         }
    }
 
    private fun initGroupSpinner() {
@@ -108,21 +77,6 @@ class AddStudentFragment : Fragment() {
                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                binding.spineerOfGroup.adapter = adapter
             }
-            binding.spineerOfGroup.onItemSelectedListener =
-               object : AdapterView.OnItemSelectedListener {
-                  override fun onItemSelected(
-                     parent : AdapterView<*>? ,
-                     view : View? ,
-                     position : Int ,
-                     id : Long
-                  ) {
-                     binding.textView9.text = groups[position].groupName
-                  }
-
-                  override fun onNothingSelected(parent : AdapterView<*>?) {
-
-                  }
-               }
          }
       }
    }
@@ -136,11 +90,11 @@ class AddStudentFragment : Fragment() {
                   studentName = binding.nameOfStudent.editText!!.text.toString() ,
                   educationYear =  binding.yearOfEducation.editText!!.text.toString(),
                   healthStatus = binding.medicalInfoOfStudent.editText!!.text.toString(),
-                  absents = 0 ,
                   age = binding.ageOfStudent.editText!!.text.toString().toInt() ,
-                  teacherName = binding.textView8.text.toString() ,
-                  currentSora = binding.textView7.text.toString() ,
-                  groupName =binding.textView9.text.toString()
+                  teacherName = binding.spineerOfTeacher.selectedItem.toString() ,
+                  currentSora = binding.spinnerOfCurrentSore.selectedItem.toString() ,
+                  groupName =binding.spineerOfGroup.selectedItem.toString(),
+                  studentNote = ""
                )
             )
             Navigation.findNavController(requireActivity(),R.id.fragmentContainerView).popBackStack()

@@ -25,9 +25,14 @@ class StudentAdapter (private val studentListener : StudentListener): RecyclerVi
 
    override fun onBindViewHolder(holder : StudentHolder , position : Int) {
       val currentStudent = students[position]
-      holder.binding.studentName.text = currentStudent.studentName
+      holder.binding.name.text = currentStudent.studentName
+      holder.binding.sora.text = currentStudent.currentSora
       holder.binding.root.setOnClickListener {
          studentListener.onStudentItemClick(currentStudent.id)
+      }
+      holder.binding.root.setOnLongClickListener {
+         studentListener.onStudentItemLongClick(currentStudent.id)
+         return@setOnLongClickListener true
       }
    }
 

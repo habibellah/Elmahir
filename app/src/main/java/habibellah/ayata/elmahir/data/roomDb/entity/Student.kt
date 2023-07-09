@@ -10,8 +10,8 @@ data class Student(
    val studentName : String ,
    val educationYear : String ,
    val healthStatus : String ,
-   val absents : Int ,
    val age : Int,
+   val studentNote : String,
    val teacherName : String,
    val currentSora : String,
    val groupName : String

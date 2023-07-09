@@ -29,4 +29,13 @@ class FakeStudentRepository : StudentRepository {
    override suspend fun getStudentBy(id : Int) : Student {
       return students.first { it.id == id }
    }
+
+   override suspend fun deleteStudentBy(studentId : Int) {
+      students.filter { it.id != studentId }
+   }
+
+   override suspend fun updateStudent(student : Student) {
+      students.removeIf { it.id == student.id }
+      students.add(student)
+   }
 }

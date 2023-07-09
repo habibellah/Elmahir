@@ -14,4 +14,7 @@ interface AbsentDao {
    @Query("SELECT * FROM absent WHERE studentId = :studentId")
    fun getAbsentsBy(studentId : Int) : LiveData<List<Absent>>
 
+   @Query("DELETE FROM absent WHERE studentId = :studentId ")
+  suspend fun deleteAbsentBy(studentId : Int)
+
 }

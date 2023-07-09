@@ -32,4 +32,10 @@ class StudentDetailsViewModel @Inject constructor(
          _student.postValue(studentRepository.getStudentBy(id))
       }
    }
+
+   fun updateStudent(student : Student) {
+      viewModelScope.launch {
+         studentRepository.updateStudent(student)
+      }
+   }
 }

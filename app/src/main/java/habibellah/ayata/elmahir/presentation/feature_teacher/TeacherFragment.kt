@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import habibellah.ayata.elmahir.R
 import habibellah.ayata.elmahir.databinding.FragmentTeacherBinding
@@ -46,6 +47,7 @@ class TeacherFragment : Fragment() {
    }
 
    private fun setupAdapter() {
+      binding.teachersRecycler.layoutManager = GridLayoutManager(context,2)
       teacherAdapter = TeacherAdapter()
       teacherViewModel.getTeachers().observe(viewLifecycleOwner){teachers ->
          if(teachers.isNotEmpty()){

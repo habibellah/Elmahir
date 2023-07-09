@@ -11,7 +11,7 @@ class StudentDataBuilder {
    var studentName : String = "some name"
    var educationYear = "some year"
    var healthStatus = "some health Status"
-   var absents : Int = 0
+   var studentNote : String = "some note"
    var currentSora = "some sora"
    var age = 0
    var teacherName = "some name"
@@ -37,8 +37,8 @@ class StudentDataBuilder {
       return this
    }
 
-   fun withAbsents(absents : Int) : StudentDataBuilder{
-      this.absents = absents
+   fun withStudentNote(studentNote : String) : StudentDataBuilder{
+      this.studentNote = studentNote
       return this
    }
 
@@ -69,7 +69,7 @@ class StudentDataBuilder {
          healthStatus = healthStatus ,
          age = age,
          teacherName = teacherName,
-         absents = absents ,
+         studentNote = studentNote ,
          currentSora = currentSora,
          groupName = groupName
       )

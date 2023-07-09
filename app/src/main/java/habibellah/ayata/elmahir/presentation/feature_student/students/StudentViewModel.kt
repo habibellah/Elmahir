@@ -15,21 +15,23 @@ class StudentViewModel @Inject constructor(
    private val studentRepository : StudentRepository
 ): ViewModel() {
 
-   private val _students:MutableLiveData<List<Student>> = MutableLiveData()
-   val students : LiveData<List<Student>> = _students
-
-   private val _student:MutableLiveData<Student> = MutableLiveData()
-   val student : LiveData<Student> = _student
-
-   fun getStudents(groupName : String) {
-    viewModelScope.launch {
-       _students.postValue(studentRepository.getStudentBy(groupName))
-    }
-   }
+   fun getStudents(groupName : String) = studentRepository.getStudentBy(groupName)
 
    fun addStudent(student : Student) {
       viewModelScope.launch {
          studentRepository.addStudent(student)
+      }
+   }
+
+   fun deleteStudentBy(studentId : Int) {
+      viewModelScope.launch {
+         studentRepository.deleteStudentBy(studentId)
+      }
+   }
+
+   fun deleteAbsentsBy(studentId : Int){
+      viewModelScope.launch {
+         studentRepository.deleteAbsentsBy(studentId)
       }
    }
 }

@@ -8,11 +8,17 @@ interface StudentRepository {
 
    suspend fun addStudent(student : Student)
 
-   suspend fun getStudentBy(groupName : String) : List<Student>
+    fun getStudentBy(groupName : String) : LiveData<List<Student>>
 
    suspend fun addAbsent(absent : Absent)
 
    fun getAbsentsBy(studentId : Int) : LiveData<List<Absent>>
 
    suspend fun getStudentBy(id : Int) : Student
+
+   suspend fun deleteStudentBy(studentId : Int)
+
+   suspend fun updateStudent(student : Student)
+
+   suspend fun deleteAbsentsBy(studentId : Int)
 }
