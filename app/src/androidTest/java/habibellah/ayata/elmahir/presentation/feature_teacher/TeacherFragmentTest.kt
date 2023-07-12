@@ -8,6 +8,7 @@ import androidx.test.espresso.PerformException
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.hasChildCount
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -30,8 +31,6 @@ import org.junit.runner.RunWith
 @SmallTest
 @HiltAndroidTest
 class TeacherFragmentTest {
-
-
    @get:Rule
    var hiltRule = HiltAndroidRule(this)
 
@@ -44,27 +43,20 @@ class TeacherFragmentTest {
    }
 
    @Test
-   fun testLaunchFragmentHiltContainer(){
+   fun testLaunchFragmentHiltContainer() {
       launchFragmentInHiltContainer<TeacherFragment>()
       onView(withId(R.id.add_teacher_fab))
          .check(matches(isDisplayed()))
    }
 
    @Test
-   fun testEmptyRecyclerViewWhenReturnEmptyTeacherList(){
-      var items = 0
-      launchFragmentInHiltContainer<TeacherFragment>(){
+   fun testEmptyRecyclerViewWhenReturnEmptyTeacherList() {
+      launchFragmentInHiltContainer<TeacherFragment>() {
          val recycler = this.view!!.findViewById<RecyclerView>(R.id.teachers_recycler)
-         items = recycler.adapter!!.itemCount
+            ?: throw AssertionError("RecyclerView Not Found")
       }
-      Assert.assertEquals(0,items)
-   }
-
-   @Test
-   fun testItemDoesNotExistInTeacherList(){
-      launchFragmentInHiltContainer<TeacherFragment>()
       onView(withId(R.id.teachers_recycler))
-         .check(matches(instanceOf(RecyclerView::class.java)))
-
+         .check(matches(hasChildCount(0)))
    }
+
 }
