@@ -1,11 +1,11 @@
 # Elmahir
 Application for the management of a Quranic school
-the technologies used:n/
-1-I follow the TDD aproach /n
-2-App architecuture guide by google/n
-3-Mvvm architecture design pattern/n
-4-Kotlin coroutine/n
-5-Navigation component/n
+the technologies used:
+1-I follow the TDD aproach \n
+2-App architecuture guide by google
+3-Mvvm architecture design pattern
+4-Kotlin coroutine
+5-Navigation component
 6-Ui,Unit tests 
 7-Room db
 8-Hilt for DI
