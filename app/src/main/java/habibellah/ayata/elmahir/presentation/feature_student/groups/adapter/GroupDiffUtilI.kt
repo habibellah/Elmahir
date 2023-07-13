@@ -2,7 +2,6 @@ package habibellah.ayata.elmahir.presentation.feature_student.groups.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import habibellah.ayata.elmahir.data.roomDb.entity.Group
-import habibellah.ayata.elmahir.data.roomDb.entity.Teacher
 
 class GroupDiffUtilI(private val oldList: List<Group> , private val newList: List<Group>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {

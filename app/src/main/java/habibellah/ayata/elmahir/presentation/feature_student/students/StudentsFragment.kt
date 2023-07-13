@@ -20,7 +20,7 @@ class StudentsFragment : Fragment() {
 
    private val args by navArgs<StudentsFragmentArgs>()
    private val studentViewModel : StudentViewModel by viewModels()
-    lateinit var studentAdapter : StudentAdapter
+    private lateinit var studentAdapter : StudentAdapter
    private lateinit var binding : FragmentStudentsBinding
    override fun onCreateView(
       inflater : LayoutInflater , container : ViewGroup? ,

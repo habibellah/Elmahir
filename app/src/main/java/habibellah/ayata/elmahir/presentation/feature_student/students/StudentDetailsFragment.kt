@@ -25,7 +25,7 @@ import java.util.Locale
 @AndroidEntryPoint
 class StudentDetailsFragment : Fragment() {
 
-   val args by navArgs<StudentDetailsFragmentArgs>()
+   private val args by navArgs<StudentDetailsFragmentArgs>()
    private lateinit var absentAdapter : AbsentAdapter
    private val studentDetailsViewModel : StudentDetailsViewModel by viewModels()
    private lateinit var binding : FragmentStudentDetailsBinding
