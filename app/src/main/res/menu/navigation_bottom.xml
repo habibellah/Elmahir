@@ -3,10 +3,10 @@
     <item
         android:id="@+id/teacherFragment2"
         android:icon="@drawable/teacher_icon"
-        android:title="الأساتذة" />
+        android:title="@string/teachers" />
 
     <item
         android:id="@+id/groupFragment2"
         android:icon="@drawable/group_icon"
-        android:title="المجموعات" />
+        android:title="@string/groups" />
 </menu>
