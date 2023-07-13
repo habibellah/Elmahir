@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -114,7 +113,6 @@ class StudentDetailsFragment : Fragment() {
       absentAdapter = AbsentAdapter()
       studentDetailsViewModel.getAbsentsBy(args.studentId).observe(viewLifecycleOwner) { absents ->
          if (absents.isNotEmpty()) {
-            Toast.makeText(context,absents.toString(),Toast.LENGTH_SHORT).show()
             absentAdapter.setData(absents)
          }
       }

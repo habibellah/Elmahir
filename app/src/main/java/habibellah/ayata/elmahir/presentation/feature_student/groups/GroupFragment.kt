@@ -19,7 +19,7 @@ import habibellah.ayata.elmahir.presentation.feature_student.groups.adapter.Grou
 class GroupFragment : Fragment() {
 
    private val groupViewModel : GroupViewModel by viewModels()
-   private lateinit var groupAdapter : GroupAdapter
+    lateinit var groupAdapter : GroupAdapter
    private lateinit var binding : FragmentGroupBinding
    override fun onCreateView(
       inflater : LayoutInflater , container : ViewGroup? ,

@@ -1,20 +1,19 @@
-package habibellah.ayata.elmahir.presentation.feature_teacher
+package habibellah.ayata.elmahir.presentation.feature_student
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.hasChildCount
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import habibellah.ayata.elmahir.R
-import habibellah.ayata.elmahir.data.TeacherDataBuilder.Companion.aTeacher
+import habibellah.ayata.elmahir.data.GroupDataBuilder.Companion.aGroup
 import habibellah.ayata.elmahir.launchFragmentInHiltContainer
+import habibellah.ayata.elmahir.presentation.feature_student.groups.GroupFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
@@ -23,22 +22,19 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
-@SmallTest
 @HiltAndroidTest
-class TeacherFragmentTest {
+class GroupFragmentTest {
+
    @get:Rule
    var hiltRule = HiltAndroidRule(this)
 
    @get:Rule
    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-
-   val teachers = listOf(
-      aTeacher().withId(1).withName("habib").build(),
-      aTeacher().withId(2).withName("ec").build(),
-      aTeacher().withId(3).withName("ce").build(),
-      aTeacher().withId(4).withName("fa").build(),
-      aTeacher().withId(5).withName("af").build(),
+   private val groups = listOf(
+      aGroup().withGroupName("old").build(),
+      aGroup().withGroupName("young").build(),
+      aGroup().withGroupName("women").build(),
    )
    @Before
    fun setup() {
@@ -46,21 +42,21 @@ class TeacherFragmentTest {
    }
 
    @Test
-   fun testEmptyRecyclerViewWhenReturnEmptyTeacherList() {
-      launchFragmentInHiltContainer<TeacherFragment> {
-     this.view!!.findViewById<RecyclerView>(R.id.teachers_recycler)
+   fun testEmptyRecyclerViewWhenReturnEmptyGroupList() {
+      launchFragmentInHiltContainer<GroupFragment> {
+         this.view!!.findViewById<RecyclerView>(R.id.recycler_group)
             ?: throw AssertionError("RecyclerView Not Found")
       }
-      onView(withId(R.id.teachers_recycler))
-         .check(matches(hasChildCount(0)))
+      onView(withId(R.id.recycler_group))
+         .check(matches(ViewMatchers.hasChildCount(0)))
    }
 
    @Test
    fun testNonEmptyTeachersList(){
-      launchFragmentInHiltContainer<TeacherFragment>(){
-            (this as TeacherFragment).teacherAdapter.setData(teachers)
+      launchFragmentInHiltContainer<GroupFragment>(){
+         (this as GroupFragment).groupAdapter.setData(groups)
       }
-      onView(withText("habib"))
+      onView(ViewMatchers.withText("old"))
          .check(matches(isDisplayed()))
    }
 }

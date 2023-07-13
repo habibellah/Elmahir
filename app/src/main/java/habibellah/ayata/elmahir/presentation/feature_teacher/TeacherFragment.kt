@@ -17,7 +17,7 @@ import habibellah.ayata.elmahir.presentation.feature_teacher.adapter.TeacherAdap
 @AndroidEntryPoint
 class TeacherFragment : Fragment() {
 
-   private lateinit var teacherAdapter : TeacherAdapter
+   lateinit var teacherAdapter : TeacherAdapter
    private val teacherViewModel : TeacherViewModel by viewModels()
    private lateinit var binding : FragmentTeacherBinding
    override fun onCreateView(
