@@ -1,6 +1,6 @@
 # Elmahir
 Application for the management of a Quranic school
-the technologies used:/n
+the technologies used:n/
 1-I follow the TDD aproach /n
 2-App architecuture guide by google/n
 3-Mvvm architecture design pattern/n
